@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página Autorizada</title>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Verifica si el usuario fue redirigido desde login.html
+      const referrer = document.referrer; // Obtiene la URL de referencia
+
+      if (referrer.includes("login.html")) {
+        // Si la página anterior fue login.html, redirige a administrador.html
+        window.location.href = "administrador.html";
+      } else {
+        // Si no, redirige inmediatamente a index.html
+        window.location.href = "index.html";
+      }
+    });
+  </script>
+</head>
+<body>
+  <h1>Verificando...</h1>
+</body>
+</html>
