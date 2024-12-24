@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mayckol Jimenez </title>
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- AOS CSS for Animations -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --color-primary: #4A90E2; /* Azul Suave */
+      --color-secondary: #198754; /* Verde Matemático */
+      --color-bg: #f9f9fb;
+      --color-text: #333;
+      --color-card-bg: #ffffff;
+      --color-header-bg: linear-gradient(120deg, #4A90E2, #6cb2f0);
+      --color-header-text: #ffffff;
+      --color-footer-bg: #343a40;
+      --color-footer-text: #ffffff;
+      --transition-speed: 0.3s;
+    }
+
+    body {
+      font-family: 'Rubik', sans-serif;
+      background: var(--color-bg);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Top Navbar */
+    .navbar {
+      background-image: var(--color-header-bg);
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .navbar-brand {
+      font-family: 'Merriweather', serif;
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: var(--color-header-text) !important;
+      transition: color var(--transition-speed);
+    }
+
+    .navbar-brand:hover {
+      color: #fff;
+    }
+
+    /* Icono de Usuario en Navbar */
+    .navbar .admin-icon {
+      color: var(--color-header-text);
+      cursor: pointer;
+      transition: color var(--transition-speed), transform var(--transition-speed);
+    }
+    .navbar .admin-icon:hover {
+      color: var(--color-secondary);
+      transform: scale(1.1);
+    }
+
+    /* Sidebar / Offcanvas */
+    .offcanvas {
+      background: #4A90E2;
+      color: #fff;
+    }
+
+    .offcanvas-header {
+      border-bottom: 1px solid rgba(255,255,255,0.3);
+    }
+
+    .offcanvas-body a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 5px;
+      transition: background-color var(--transition-speed);
+    }
+
+    .offcanvas-body a:hover {
+      background-color: rgba(255,255,255,0.1);
+    }
+
+    .offcanvas-body a i {
+      margin-right: 10px;
+    }
+
+    .sidebar-desktop {
+      background-color: #4A90E2;
+      color: #fff;
+      width: 250px;
+      flex-shrink: 0;
+      display: none;
+      flex-direction: column;
+      padding-top: 20px;
+      position: fixed;
+      top: 56px; 
+      bottom: 0;
+      overflow-y: auto;
+      transition: all var(--transition-speed);
+    }
+
+    .sidebar-desktop h2 {
+      color: var(--color-secondary);
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 1.4rem;
+      font-family: 'Merriweather', serif;
+    }
+
+    .sidebar-desktop ul {
+      list-style: none;
+      padding: 0 15px;
+      margin: 0;
+    }
+
+    .sidebar-desktop ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 16px;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      transition: background-color var(--transition-speed), transform var(--transition-speed);
+    }
+
+    .sidebar-desktop ul li a:hover {
+      background-color: rgba(255,255,255,0.15);
+      transform: translateX(5px);
+    }
+
+    .sidebar-desktop ul li a i {
+      margin-right: 10px;
+    }
+
+    /* Main Content */
+    .main-content {
+      flex: 1;
+      transition: margin-left var(--transition-speed);
+      padding: 20px;
+      margin-top: 56px;
+      margin-left: 0;
+    }
+
+    @media (min-width: 992px) {
+      .sidebar-desktop {
+        display: flex;
+      }
+
+      .main-content {
+        margin-left: 250px;
+      }
+    }
+
+    /* Header Principal */
+    header {
+      position: relative;
+      text-align: center;
+      color: #333;
+      margin-bottom: 60px;
+    }
+
+    header .hero {
+      background: url('http://mayckoljh.usite.pro/gif.gif') right no-repeat;
+      background-size: cover;
+      padding: 100px 20px;
+      border-radius: 10px;
+      color: #fff;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      position: relative;
+      overflow: hidden;
+      min-height: 300px;
+    }
+
+    /* Caja de información arriba a la derecha (fecha, bienvenida, RSS) */
+    .info-box {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(255,255,255,0.8);
+      color: #333;
+      padding: 10px 15px;
+      border-radius: 8px;
+      text-align: right;
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+
+    .info-box a {
+      color: #0066cc;
+      text-decoration: none;
+    }
+
+    .info-box a:hover {
+      text-decoration: underline;
+    }
+
+    header .hero h1, 
+    header .hero p {
+      position: relative;
+      z-index: 1;
+    }
+
+    header .hero h1 {
+      font-family: 'Merriweather', serif;
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+    }
+
+    header .hero p {
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+
+    /* Sobre mí Section */
+    .about-me {
+      background: var(--color-card-bg);
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      text-align: center;
+      padding: 40px 20px;
+      margin-bottom: 50px;
+      position: relative;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .about-me img {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid var(--color-secondary);
+      margin-bottom: 20px;
+      transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+      cursor: pointer;
+    }
+
+    .about-me img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    }
+
+    .about-me h2 {
+      font-size: 2rem;
+      font-family: 'Merriweather', serif;
+      color: var(--color-text);
+      margin-bottom: 20px;
+    }
+
+    .about-me p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #555;
+    }
+
+    /* Section Titles */
+    .section-content {
+      margin-bottom: 60px;
+    }
+
+    .section-content h2 {
+      font-size: 2rem;
+      font-family: 'Merriweather', serif;
+      text-align: center;
+      margin-bottom: 30px;
+      position: relative;
+      display: inline-block;
+      padding-bottom: 10px;
+      color: var(--color-text);
+    }
+
+    .section-content h2::after {
+      content: '';
+      position: absolute;
+      width: 60px;
+      height: 4px;
+      background-color: var(--color-secondary);
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 2px;
+    }
+
+    /* Cards */
+    .tarjetas-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+    }
+
+    .card {
+      border: none;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+      background-color: var(--color-card-bg);
+      max-width: 350px;
+      flex: 1 1 300px;
+      display: flex;
+      flex-direction: column;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+
+    .card-img-top {
+      object-fit: cover;
+      height: 180px;
+      transition: transform var(--transition-speed);
+    }
+
+    .card-img-top:hover {
+      transform: scale(1.05);
+    }
+
+    .card-body {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .card-title {
+      font-size: 1.5rem;
+      font-family: 'Merriweather', serif;
+      margin-bottom: 15px;
+      color: var(--color-text);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card-text {
+      flex: 1;
+      font-size: 1rem;
+      color: #555;
+      margin-bottom: 15px;
+    }
+
+    .card .btn {
+      transition: background-color var(--transition-speed), transform var(--transition-speed);
+      font-weight: 600;
+    }
+
+    .card .btn:hover {
+      transform: scale(1.05);
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--color-footer-bg);
+      color: var(--color-footer-text);
+      text-align: center;
+      padding: 15px;
+      font-size: 0.9rem;
+      margin-top: auto;
+    }
+
+    footer p {
+      margin: 0;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translate3d(0, 20px, 0);
+      }
+      to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+      }
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 767px) {
+      .sidebar-desktop {
+        display: none;
+      }
+
+      header .hero {
+        background-attachment: scroll;
+      }
+    }
+
+    /* Estilos para el buscador */
+    .search-bar {
+      max-width: 400px;
+      margin: 0 auto 40px auto;
+    }
+
+    /* Estilos para Enlaces Útiles con Imagen */
+    .enlace-card {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .enlace-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      transition: transform var(--transition-speed);
+    }
+
+    .enlace-card img:hover {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar Superior -->
+  <nav class="navbar navbar-dark navbar-expand-lg sticky-top">
+    <div class="container-fluid">
+      <button class="navbar-toggler me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="#">Mayckol Jiménez Huayama</a>
+      <!-- Ícono de Usuario para Administración -->
+      <a href="login.html" class="admin-icon ms-auto" aria-label="Administración">
+        <i class="fas fa-user-circle fa-2x"></i>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Offcanvas para vista móvil -->
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasMenu">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title">Menú</h5>
+      <button type="button" class="btn-close btn-close-white text-reset" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <div class="offcanvas-body">
+      <!-- Enlaces del menú en móvil -->
+      <a href="#sobre-mi"><i class="fas fa-user"></i> Sobre mí</a>
+      <a href="#cursos"><i class="fas fa-square-root-alt"></i> Cursos</a>
+      <a href="#videos"><i class="fas fa-video"></i> Videos</a>
+      <a href="#enlaces"><i class="fas fa-link"></i> Enlaces Útiles</a>
+      <a href="#contacto"><i class="fas fa-address-card"></i> Contacto</a>
+    </div>
+  </div>
+
+  <!-- Sidebar en escritorio -->
+  <div class="sidebar-desktop d-none d-lg-flex">
+    <h2><i class="fas fa-chalkboard-teacher"></i>Mayckol Jiménez Huayama</h2>
+    <ul>
+      <li><a href="#sobre-mi"><i class="fas fa-user"></i> Sobre mí</a></li>
+      <li><a href="#cursos"><i class="fas fa-square-root-alt"></i> Cursos</a></li>
+      <li><a href="#videos"><i class="fas fa-video"></i> Videos</a></li>
+      <li><a href="#enlaces"><i class="fas fa-link"></i> Enlaces Útiles</a></li>
+      <li><a href="#contacto"><i class="fas fa-address-card"></i> Contacto</a></li>
+    </ul>
+  </div>
+
+  <!-- Contenido principal -->
+  <div class="main-content">
+    <header class="mb-5">
+      <div class="hero">
+        <!-- Caja con la fecha, hora, bienvenida y RSS -->
+        <div class="info-box">
+          Lunes, 12.09.2024, 11:04 PM<br>
+          Bienvenido(a) <b>Visitante</b> | 
+          <a href="https://mayckoljh.usite.pro/load/rss/" title="RSS">RSS</a>
+        </div>
+        
+        
+      </div>
+    </header>
+
+    <!-- Buscador -->
+    <div class="search-bar mb-5">
+      <input type="text" id="search-input" class="form-control" placeholder="Buscar contenido...">
+    </div>
+
+    <!-- Sobre mí -->
+    <section id="sobre-mi" class="about-me mx-auto" style="max-width: 800px;" data-aos="fade-up">
+      <h2><i class="fas fa-user-graduate"></i> Sobre mí</h2>
+      <img src="https://scholar.googleusercontent.com/citations?view_op=view_photo&user=jwai-NsAAAAJ&citpid=4" alt="Mayckol Jiménez Huayama">
+      <p>Hola, soy Mayckol Jiménez Huayama, profesor de Matemáticas en la Universidad Nacional Agraria de la Selva. Me apasiona enseñar y compartir el conocimiento con mis estudiantes. En esta página podrás acceder a mis cursos, videos educativos y otros recursos que he preparado para ti.</p>
+    </section>
+
+    <!-- Cursos -->
+    <section id="cursos" class="section-content" data-aos="fade-up">
+      <h2><i class="fas fa-book-open me-2"></i>Cursos</h2>
+      <div id="cursos-lista" class="tarjetas-container">
+        <!-- Tarjetas de cursos se insertarán aquí dinámicamente -->
+      </div>
+    </section>
+
+    <!-- Videos -->
+    <section id="videos" class="section-content" data-aos="fade-up">
+      <h2><i class="fas fa-video me-2"></i>Videos de YouTube</h2>
+      <div id="videos-lista" class="tarjetas-container">
+        <!-- Tarjetas de videos se insertarán aquí dinámicamente -->
+      </div>
+    </section>
+
+    <!-- Enlaces -->
+    <section id="enlaces" class="section-content" data-aos="fade-up">
+      <h2><i class="fas fa-link me-2"></i>Enlaces Útiles</h2>
+      <div id="enlaces-lista" class="tarjetas-container">
+        <!-- Tarjetas de enlaces se insertarán aquí dinámicamente -->
+      </div>
+    </section>
+
+    <!-- Contacto -->
+    <section id="contacto" class="section-content" data-aos="fade-up">
+      <h2><i class="fas fa-address-card me-2"></i>Contacto</h2>
+      <p class="text-center mb-4">Conéctate conmigo a través de mis redes y enlaces profesionales.</p>
+      <div class="d-flex flex-wrap justify-content-center gap-3">
+        <!-- Enlace al canal de YouTube -->
+        <a href="https://www.youtube.com/@mayckoljimenezhuayama3533" class="btn btn-danger btn-lg" target="_blank">
+          <i class="fab fa-youtube me-2"></i> Mi Canal de YouTube
+        </a>
+        <!-- Enlace a Google Académico -->
+        <a href="https://scholar.google.com/citations?user=jwai-NsAAAAJ&hl=es" class="btn btn-dark btn-lg" target="_blank">
+          <i class="fas fa-graduation-cap me-2"></i> Google Académico
+        </a>
+        <!-- Enlace a WhatsApp -->
+        <a href="https://wa.me/+51934674829" class="btn btn-success btn-lg" target="_blank">
+          <i class="fab fa-whatsapp me-2"></i> WhatsApp
+        </a>
+      </div>
+    </section>
+
+    <footer>
+      <p>&copy; 2024 Mayckol Jiménez Huayama. Todos los derechos reservados.</p>
+    </footer>
+  </div>
+
+  <!-- Firebase SDK Compat -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-storage-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-analytics-compat.js"></script>
+  
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- AOS JS for Animations -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  
+  <script>
+    // Inicializar AOS
+    AOS.init({
+      duration: 1000,
+      once: true,
+    });
+
+    // Configuración de Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyA3p9Vs9zhre-kcxTGbEsjLOEP9Y8At_2Y",
+      authDomain: "mayckoljimenez-4a37a.firebaseapp.com",
+      projectId: "mayckoljimenez-4a37a",
+      storageBucket: "mayckoljimenez-4a37a.appspot.com",
+      messagingSenderId: "181734742325",
+      appId: "1:181734742325:web:7b954c291745c81777947c",
+      measurementId: "G-CTSD2L8QD7"
+    };
+    // Inicializar Firebase
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+    const storage = firebase.storage();
+
+    let cursosData = [];
+    let videosData = [];
+    let enlacesData = [];
+
+    const cursosLista = document.getElementById("cursos-lista");
+    const videosLista = document.getElementById("videos-lista");
+    const enlacesLista = document.getElementById("enlaces-lista");
+
+    // Funciones para crear tarjetas
+    function crearTarjetaCurso(curso) {
+      const imagen = curso.imagen_url ? curso.imagen_url : "https://via.placeholder.com/350x180?text=Curso+Imagen";
+      return `
+        <div class="card" data-aos="zoom-in">
+          <img src="${imagen}" class="card-img-top" alt="${curso.nombre}">
+          <div class="card-body d-flex flex-column">
+              <h5 class="card-title"><i class="fas fa-square-root-alt"></i> ${curso.nombre}</h5>
+              <p class="card-text">${curso.descripcion}</p>
+              <a href="${curso.enlace_video}" target="_blank" class="btn btn-primary mt-auto">
+                  <i class="fas fa-play-circle me-2"></i>Ver Video
+              </a>
+          </div>
+          ${curso.temas && curso.temas.length > 0 ? `
+          <ul class="list-group list-group-flush">
+              ${curso.temas.map(tema => `<li class="list-group-item"><i class="fas fa-tag me-2"></i>${tema}</li>`).join("")}
+          </ul>`: ""}
+        </div>
+      `;
+    }
+
+    function crearTarjetaVideo(video) {
+      // Extraer el ID del video de la URL
+      let videoID = '';
+      try {
+        const url = new URL(video.enlace);
+        videoID = url.searchParams.get('v') || url.pathname.split('/').pop();
+      } catch (e) {
+        console.error('URL de video inválida:', video.enlace);
+      }
+
+      return `
+        <div class="card" data-aos="zoom-in">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title"><i class="fas fa-youtube me-2"></i>${video.titulo}</h5>
+            <div class="ratio ratio-16x9 mb-3">
+              <iframe 
+                src="https://www.youtube.com/embed/${videoID}" 
+                title="${video.titulo}"
+                frameborder="0" 
+                allowfullscreen>
+              </iframe>
+            </div>
+            <p class="card-text">${video.descripcion}</p>
+            <a href="${video.enlace}" target="_blank" class="btn btn-warning mt-auto">
+              <i class="fas fa-external-link-alt me-2"></i>Ver en YouTube
+            </a>
+          </div>
+        </div>
+      `;
+    }
+
+    function crearTarjetaEnlace(enlace) {
+      const imagen = enlace.imagen_url ? enlace.imagen_url : "https://via.placeholder.com/350x180?text=Enlace+Imagen";
+      return `
+        <div class="card enlace-card" data-aos="zoom-in">
+          <img src="${imagen}" class="card-img-top" alt="${enlace.titulo}">
+          <div class="card-body d-flex flex-column">
+              <h5 class="card-title"><i class="fas fa-link me-2"></i>${enlace.titulo}</h5>
+              <p class="card-text">${enlace.descripcion}</p>
+              <a href="${enlace.url}" target="_blank" class="btn btn-info mt-auto">
+                  <i class="fas fa-external-link-alt me-2"></i>Acceder
+              </a>
+          </div>
+        </div>
+      `;
+    }
+
+    // Funciones para renderizar
+    function renderCursos(data) {
+      cursosLista.innerHTML = data.length > 0 
+        ? data.map(c => crearTarjetaCurso(c)).join("")
+        : "<p class='text-center text-muted'>No hay cursos disponibles por el momento.</p>";
+    }
+
+    function renderVideos(data) {
+      videosLista.innerHTML = data.length > 0 
+        ? data.map(v => crearTarjetaVideo(v)).join("")
+        : "<p class='text-center text-muted'>No hay videos disponibles por el momento.</p>";
+    }
+
+    function renderEnlaces(data) {
+      enlacesLista.innerHTML = data.length > 0 
+        ? data.map(e => crearTarjetaEnlace(e)).join("")
+        : "<p class='text-center text-muted'>No hay enlaces disponibles por el momento.</p>";
+    }
+
+    // Funciones para cargar datos
+    async function cargarCursos() {
+      try {
+        const cursosRef = db.collection("cursos");
+        const snapshot = await cursosRef.get();
+        cursosData = [];
+        if (!snapshot.empty) {
+          snapshot.forEach(doc => {
+            cursosData.push(doc.data());
+          });
+        }
+        renderCursos(cursosData);
+      } catch (error) {
+        console.error("Error al cargar cursos:", error);
+        cursosLista.innerHTML = "<p class='text-danger text-center'>Error al cargar los cursos.</p>";
+      }
+    }
+
+    async function cargarVideos() {
+      try {
+        const videosRef = db.collection("videos");
+        const snapshot = await videosRef.get();
+        videosData = [];
+        if (!snapshot.empty) {
+          snapshot.forEach(doc => {
+            videosData.push(doc.data());
+          });
+        }
+        renderVideos(videosData);
+      } catch (error) {
+        console.error("Error al cargar videos:", error);
+        videosLista.innerHTML = "<p class='text-danger text-center'>Error al cargar los videos.</p>";
+      }
+    }
+
+    async function cargarEnlaces() {
+      try {
+        const enlacesRef = db.collection("enlaces");
+        const snapshot = await enlacesRef.get();
+        enlacesData = [];
+        if (!snapshot.empty) {
+          snapshot.forEach(doc => {
+            enlacesData.push(doc.data());
+          });
+        }
+        renderEnlaces(enlacesData);
+      } catch (error) {
+        console.error("Error al cargar enlaces:", error);
+        enlacesLista.innerHTML = "<p class='text-danger text-center'>Error al cargar los enlaces.</p>";
+      }
+    }
+
+    window.onload = async function() {
+      await cargarCursos();
+      await cargarVideos();
+      await cargarEnlaces();
+    }
+
+    // Buscador
+    const searchInput = document.getElementById('search-input');
+    searchInput.addEventListener('input', function() {
+      const query = this.value.toLowerCase().trim();
+
+      // Filtrar cursos
+      const filteredCursos = cursosData.filter(c => 
+        c.nombre.toLowerCase().includes(query) ||
+        (c.descripcion && c.descripcion.toLowerCase().includes(query)) ||
+        (c.temas && c.temas.some(t => t.toLowerCase().includes(query)))
+      );
+
+      // Filtrar videos
+      const filteredVideos = videosData.filter(v =>
+        v.titulo.toLowerCase().includes(query) ||
+        (v.descripcion && v.descripcion.toLowerCase().includes(query))
+      );
+
+      // Filtrar enlaces
+      const filteredEnlaces = enlacesData.filter(e =>
+        e.titulo.toLowerCase().includes(query) ||
+        (e.descripcion && e.descripcion.toLowerCase().includes(query))
+      );
+
+      renderCursos(filteredCursos);
+      renderVideos(filteredVideos);
+      renderEnlaces(filteredEnlaces);
+    });
+
+    // Cerramos el offcanvas al hacer clic en cualquier enlace del menú móvil
+    document.querySelectorAll('#offcanvasMenu .offcanvas-body a').forEach(link => {
+      link.addEventListener('click', () => {
+        const offcanvasElement = document.getElementById('offcanvasMenu');
+        const offcanvas = bootstrap.Offcanvas.getInstance(offcanvasElement);
+        if (offcanvas) {
+          offcanvas.hide(); // Cierra el menú lateral automáticamente
+        }
+      });
+    });
+  </script>
+</body>
+</html>
